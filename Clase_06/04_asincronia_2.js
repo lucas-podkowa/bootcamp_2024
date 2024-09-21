@@ -7,22 +7,12 @@ base = [
 ];
 
 
-
-
-
-
-
-
-
-
-
 function getDatos(funcioncita) { //getDatos probablemente pueda demrar en el tiempo, no es instantanea   
     setTimeout(() => {
         funcioncita(base);
     }, 1000);
 
 }
-
 
 //te voy a meter un delay de 1 segundo
 //getEdades(getDatos());
