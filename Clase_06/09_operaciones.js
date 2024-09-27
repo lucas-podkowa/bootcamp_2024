@@ -33,4 +33,3 @@ export function despedir(name) {
     return 'adios ' + name;
 }
 
-
