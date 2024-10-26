@@ -1,4 +1,4 @@
-const model = require('./../model/avion');
+const model = require('../model/avion');
 
 const getAll = () => {
     model.getAll();
