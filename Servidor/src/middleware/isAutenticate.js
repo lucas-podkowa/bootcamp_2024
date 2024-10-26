@@ -1,10 +1,10 @@
-import { verify } from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 
-function isAuthorized(req, res, next) {
+function isAutenticate(req, res, next) {
     if (req.headers["authorization"]) {
         try {
             const token = req.headers["authorization"]
-            const verified = verify(token, "ultraMegaSecretPass");
+            const verified = jwt.verify(token, "ultraMegaSecretPass");
             if (verified) {
                 next();
             } else {
@@ -25,4 +25,4 @@ function isAuthorized(req, res, next) {
     }
 }
 
-export default isAuthorized;
+module.exports = isAutenticate;
