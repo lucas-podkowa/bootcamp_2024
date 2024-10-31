@@ -1,4 +1,4 @@
-const { body, validationResult } = require("express-validator");
+import { body, validationResult } from "express-validator";
 
 // forma resumida con la desventaja que no puedo reutilizar codigo
 const validateUser = [
@@ -77,7 +77,7 @@ const vueloValidationRules = () => [
     .withMessage("El ID del avión debe ser un número entero válido"),
 ];
 
-module.exports = {
+export default {
   userValidationRules,
   // avionValidationRules,
   // vueloValidationRules,

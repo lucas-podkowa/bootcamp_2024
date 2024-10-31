@@ -1,6 +1,7 @@
-const pg = require('pg');
+import pg from 'pg'
+const { Pool } = pg
 
-const pool = new pg.Pool({
+const pool = new Pool({
   host: 'localhost',
   user: 'postgres',
   password: 'admin',
@@ -13,6 +14,6 @@ pool.on('error', (err, client) => {
   process.exit(-1);
 });
 
-module.exports = pool;
+export default pool;
 
 

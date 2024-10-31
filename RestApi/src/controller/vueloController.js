@@ -1,22 +1,21 @@
-const model = require('../model/avion');
+import model from '../model/avion.js';
 
-const getAll = () => {
+export const getAll = () => {
     model.getAll();
 }
 
-const create = (datosAvion) => {
+export const create = (datosAvion) => {
     model.creat(datosAvion);
 }
 
-
-const update = (datosAvion) => {
+export const update = (datosAvion) => {
     model.update(datosAvion);
 }
 
-const deleteOne = (idAvion) => {
+export const deleteOne = (idAvion) => {
 }
 
-const deleteMany = (avionesToDelete) => {
+export const deleteMany = (avionesToDelete) => {
 }
 
-module.exports = { getAll, create, update, deleteOne, deleteMany };
+

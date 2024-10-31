@@ -1,22 +1,20 @@
-const model = require('../model/tickets');
+import model from '../model/tickets.js';
 
-const getAll = () => {
+export const getAll = () => {
     model.getAll();
 
 }
 
-const create = (datosAvion) => {
+export const create = (datosAvion) => {
     model.create(datosAvion);
 }
 
-const update = (datosAvion) => {
+export const update = (datosAvion) => {
     model.update(datosAvion);
 }
 
-const deleteOne = (idAvion) => {
+export const deleteOne = (idAvion) => {
 }
 
-const deleteMany = (avionesToDelete) => {
+export const deleteMany = (avionesToDelete) => {
 }
-
-module.exports = { getAll, create, update, deleteOne, deleteMany };

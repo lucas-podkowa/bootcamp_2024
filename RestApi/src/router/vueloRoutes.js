@@ -1,12 +1,12 @@
-const express = require("express");
-const router = express.Router();
+import { Router } from "express";
+const router = Router();
 
-const controller = require('../controller/vueloController');
+import { getAll, create, update, deleteOne, deleteMany } from '../controller/vueloController.js';
 
-router.get('/', controller.getAll);
-router.post('/create', controller.create);
-router.put('/update', controller.update);
-router.delete('/delete', controller.deleteOne);
-router.delete('/destroy', controller.deleteMany);
+router.get('/', getAll);
+router.post('/create', create);
+router.put('/update', update);
+router.delete('/delete', deleteOne);
+router.delete('/destroy', deleteMany);
 
-module.exports = router;
+export default router;

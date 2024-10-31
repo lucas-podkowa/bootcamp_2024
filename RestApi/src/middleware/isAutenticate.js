@@ -1,10 +1,11 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken'
+const { verify } = jwt
 
 function isAutenticate(req, res, next) {
     if (req.headers["authorization"]) {
         try {
             const token = req.headers["authorization"]
-            const verified = jwt.verify(token, "ultraMegaSecretPass");
+            const verified = verify(token, "ultraMegaSecretPass");
             if (verified) {
                 next();
             } else {
@@ -25,4 +26,4 @@ function isAutenticate(req, res, next) {
     }
 }
 
-module.exports = isAutenticate;
+export default isAutenticate;
