@@ -1,6 +1,8 @@
 import express, { json } from "express";
 const app = express();
-app.use(json());
+
+app.use(express.json());
+
 import fetch from 'node-fetch';
 
 import axios from 'axios'; // Para consumir API externa
@@ -9,9 +11,9 @@ import avionRoutes from './src/router/avionRoutes.js';
 import vueloRoutes from './src/router/vueloRoutes.js';
 import ticketsRoutes from './src/router/ticketsRoutes.js';
 
-// app.use("/avion", avionRoutes);
-// app.use("/vuelo", vueloRoutes);
-// app.use("/tickets", ticketsRoutes);
+app.use("/avion", avionRoutes);
+app.use("/vuelo", vueloRoutes);
+app.use("/tickets", ticketsRoutes);
 
 
 // app.get('/api/user', async (req, res) => {

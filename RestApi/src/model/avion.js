@@ -1,32 +1,65 @@
 import pool from "../config/db.js";
 
+
 const getAll = async () => {
 
-    const query = "SELECT * FROM aviones";
-    const { rows } = await _query(query);
-    return rows;
+    try {
+        const query = "SELECT * FROM avion";
+        const { rows } = await pool.query(query);
+        return rows;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+
 };
 
 const getById = async (id) => {
-    const query = "SELECT * FROM aviones WHERE id = $1";
-    const { rows } = await pool(query, [id]);
-    return rows[0];
+    // const query = "SELECT * FROM avion WHERE id = $1";
+    // const { rows } = await pool(query, [id]);
+    // return rows[0];
 };
 
-const create = async (avionData) => {
-    const { modelo, fabricante, capacidad } = avionData;
-    const query =
-        "INSERT INTO aviones (modelo, fabricante, capacidad) VALUES ($1, $2, $3) RETURNING *";
-    const { rows } = await pool(query, [modelo, fabricante, capacidad]);
-    return rows[0];
+const create = async (data) => {
+
+    try {
+        const { nombre, cantidad_asientos } = data;
+        const sentence = "INSERT INTO avion (nombre, cantidad_asientos) VALUES ($1, $2)";
+        const { rows } = await pool.query(sentence, [nombre, cantidad_asientos]);
+
+        return {
+            message: `Avion ${nombre} insertado con exito`,
+            detail: rows
+        }
+
+    } catch (error) {
+        throw new Error(error.message);
+    }
+
+
+
+
+
+    //return rows[0];
 };
 
-const update = async (id, avionData) => {
-    const { modelo, fabricante, capacidad } = avionData;
-    const query =
-        "UPDATE aviones SET modelo = $1, fabricante = $2, capacidad = $3 WHERE id = $4 RETURNING *";
-    const { rows } = await pool(query, [modelo, fabricante, capacidad, id]);
-    return rows[0];
+const update = async (id, data) => {
+
+    try {
+        const { nombre, cantidad_asientos } = data;
+        const sentence =
+            "UPDATE avion SET nombre = $1, cantidad_asientos = $2 WHERE id = $3";
+        const { rows } = await pool.query(sentence, [nombre, cantidad_asientos, id]);
+        return {
+            message: `Avion ${nombre} actualizado con exito`,
+            detail: rows[0]
+        }
+    } catch (error) {
+        throw new Error(error.message);
+    }
+
+
+
+
 };
 
 // Eliminar un avión por ID
