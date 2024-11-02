@@ -1,6 +1,5 @@
 import { Router } from "express";
 const router = Router();
-import isAutenticated from '../middleware/isAutenticate.js';
 
 import { getAll, create, update, deleteOne, deleteMany } from '../controller/ticketsController.js';
 
@@ -8,7 +7,7 @@ import { getAll, create, update, deleteOne, deleteMany } from '../controller/tic
 //router.METHOD('path', middleware1, middleware2, controller);
 
 router.get('/', getAll);
-router.post('/create', isAutenticated, create);
+router.post('/create', create);
 router.put('/update', update);
 router.delete('/delete', deleteOne);
 router.delete('/destroy', deleteMany);
