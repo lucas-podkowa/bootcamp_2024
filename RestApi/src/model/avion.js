@@ -1,5 +1,6 @@
 import pool from "../config/db.js";
 
+
 const getAll = async () => {
   try {
     const query = "SELECT * FROM avion";
@@ -20,11 +21,6 @@ const getById = async (id) => {
   } catch (error) {
     throw new Error(error.message);
   }
-
-
-  // const query = "SELECT * FROM avion WHERE id = $1";
-  // const { rows } = await pool(query, [id]);
-  // return rows[0];
 };
 
 const create = async (data) => {

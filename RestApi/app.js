@@ -2,14 +2,15 @@ import express, { json } from "express";
 const app = express();
 app.use(express.json());
 
-
 import avionRoutes from './src/router/avionRoutes.js';
 import vueloRoutes from './src/router/vueloRoutes.js';
 import ticketsRoutes from './src/router/ticketsRoutes.js';
+import usuarioRoutes from './src/router/usuarioRoutes.js';
 
 app.use("/avion", avionRoutes);
 app.use("/vuelo", vueloRoutes);
 app.use("/tickets", ticketsRoutes);
+app.use("/usuario", usuarioRoutes);
 
 
 app.listen(8080, (err) => {
