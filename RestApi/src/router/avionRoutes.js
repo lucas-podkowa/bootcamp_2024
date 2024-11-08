@@ -8,12 +8,13 @@ import { isAutenticated } from "./../middleware/usuarioValidator.js"
 
 //en esta instancia definiremos nusetros validator
 
-router.get('/', isAutenticated, getAll);
+
+router.get('/', getAll);
 router.get('/:id', rulesList(), validate, getAll);
 
-router.post('/create',rulesCreate(), validate, create);
-router.put('/update/:id',isAutenticated, rulesUpdate(), validate, update);
-router.delete('/delete/:id',isAutenticated ,deleteOne);
+router.post('/create', rulesCreate(), validate, create);
+router.put('/update/:id', rulesUpdate(), validate, update);
+router.delete('/delete/:id', isAutenticated, deleteOne);
 router.delete('/delete_many', deleteMany);
 
 

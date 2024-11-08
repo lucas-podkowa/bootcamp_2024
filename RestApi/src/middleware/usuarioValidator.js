@@ -1,4 +1,3 @@
-import e from "express";
 import { body, check, validationResult } from "express-validator"
 import jwt from 'jsonwebtoken';
 

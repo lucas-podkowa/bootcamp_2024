@@ -1,10 +1,23 @@
-import { query as _query } from "../config/db.js";
+import pool from "../config/db.js";
 
 const getAll = async () => {
+    try {
+        const query = "SELECT * FROM vuelo";
+        const { rows } = await pool.query(query);
+        return rows;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};
 
-    const query = "SELECT * FROM vuelos";
-    const { rows } = await _query(query);
-    return rows;
+const getByNumero = async (numero) => {
+    try {
+        const query = "SELECT * FROM vuelo WHERE numero = $1";
+        const { rows } = await pool.query(query, [numero]);
+        return rows[0];
+    } catch (error) {
+        throw new Error(error.message);
+    }
 };
 
 const getById = async (id) => {
@@ -13,12 +26,21 @@ const getById = async (id) => {
     return rows[0];
 };
 
-const create = async (avionData) => {
-    const { modelo, fabricante, capacidad } = avionData;
-    const query =
-        "INSERT INTO aviones (modelo, fabricante, capacidad) VALUES ($1, $2, $3) RETURNING *";
-    const { rows } = await _query(query, [modelo, fabricante, capacidad]);
-    return rows[0];
+const create = async (data) => {
+
+    try {
+        const { numero, origen, destino, avion_id } = data;
+        const sentence = "INSERT INTO vuelo (numero, origen, destino, avion_id) VALUES ($1, $2, $3, $4) RETURNING *";
+        const { rows } = await pool.query(sentence, [numero, origen, destino, avion_id]);
+
+        return {
+            message: `Vuelo ${numero} insertado con exito`,
+            detail: rows[0],
+        };
+    } catch (error) {
+        throw new Error(error.message);
+    }
+
 };
 
 const update = async (id, avionData) => {
@@ -42,4 +64,5 @@ export default {
     create,
     update,
     deleteOne,
+    getByNumero,
 };

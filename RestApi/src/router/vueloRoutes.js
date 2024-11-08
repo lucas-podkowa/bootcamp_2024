@@ -1,10 +1,12 @@
 import { Router } from "express";
 const router = Router();
 
-import { getAll, create, update, deleteOne, deleteMany } from '../controller/vueloController.js';
+import { getAll, getByNumero, update, deleteOne, deleteMany, create } from '../controller/vueloController.js';
+import { vueloCreateRules, validate } from './../middleware/vueloValidator.js';
 
 router.get('/', getAll);
-router.post('/create', create);
+router.get('/:numero', getByNumero);
+router.post('/create', vueloCreateRules(), validate, create);
 router.put('/update', update);
 router.delete('/delete', deleteOne);
 router.delete('/destroy', deleteMany);
