@@ -78,14 +78,14 @@ export const login = async (req, res) => {
                 if (err) {
                     res.status(500).send({ message: err });
                 } else {
-                    res.status(200).json({ datos: user, token: token });
+                    res.status(200).json({ datos: user, credentials: token });
                 }
             })
         } else {
             res.status(403).send({ message: 'Contraseña Incorrecta' });
         }
     } catch (error) {
-        res.status(500).send({ message: error.message });
+        res.status(error.status || 500).send({ message: error.message });
     }
 }
 

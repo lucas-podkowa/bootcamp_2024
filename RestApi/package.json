@@ -4,8 +4,9 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "dev": "node --watch app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --watch index.js",
+    "test": "set NODE_OPTIONS=--experimental-vm-modules && jest",
+    "cobertura": "set NODE_OPTIONS=--experimental-vm-modules && jest --coverage"
   },
   "keywords": [],
   "author": "",
@@ -22,5 +23,9 @@
     "node-fetch": "^3.3.2",
     "nodemon": "^3.1.7",
     "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
   }
 }
