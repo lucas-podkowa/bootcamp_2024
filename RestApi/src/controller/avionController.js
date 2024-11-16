@@ -1,4 +1,5 @@
 import model from '../model/avion.js';
+import multer from 'multer';
 
 //app.METHOD('path', handler)
 //http://localhost:8080/avion/     (GET)
@@ -17,7 +18,10 @@ export const getAll = async (req, res) => {
 }
 
 export const create = async (req, res) => {
+
     const data = req.body;
+    data.foto = req.file ? `/uploads/${req.file.originalname}` : null;
+
     try {
         const result = await model.create(data);
         res.status(201).json(result);

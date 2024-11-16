@@ -1,0 +1,103 @@
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  description: |-
+    Sistema de aeropuerto
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://petstore3.swagger.io/api/v3
+tags:
+- name: Aviones
+  description: Operaciones relacionadas con la gestión de aviones.
+- name: Vuelos
+  description: Operaciones relacionadas con la gestión de vuelos.
+paths:
+  /api/avion/create:
+    post:
+      summary: Crea un nuevo avión
+      tags: [Aviones]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                cantidad_asientos:
+                  type: integer
+                image:
+                  type: string
+                  format: binary
+      responses:
+        201:
+          description: Avión creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Avion'
+        500:
+          description: Error en el servidor
+  /api/avion/update/{id}:
+    put:
+      summary: Actualiza un avión existente
+      tags: [Aviones]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID del avión a actualizar
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                cantidad_asientos:
+                  type: integer
+                image:
+                  type: string
+                  format: binary
+      responses:
+        201:
+          description: Avión actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Avion'
+        404:
+          description: Avión no encontrado
+        500:
+          description: Error en el servidor
+components:
+  schemas:
+    Avion:
+      type: object
+      properties:
+        nombre:
+          type: string
+          description: Nombre del avión
+        cantidad_asientos:
+          type: integer
+          description: Cantidad de asientos en el avión
+        image_url:
+          type: string
+          description: URL de la imagen del avión
+      example:
+        nombre: Airbus A320
+        cantidad_asientos: 150
+        image_url: /uploads/12345-airbus.jpg   

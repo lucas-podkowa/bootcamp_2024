@@ -25,9 +25,10 @@ const getById = async (id) => {
 
 const create = async (data) => {
   try {
-    const { nombre, cantidad_asientos } = data;
-    const sentence = "INSERT INTO avion (nombre, cantidad_asientos) VALUES ($1, $2) RETURNING *";
-    const { rows } = await pool.query(sentence, [nombre, cantidad_asientos]);
+
+    const { nombre, cantidad_asientos, foto } = data;
+    const sentence = "INSERT INTO avion (nombre, cantidad_asientos, foto) VALUES ($1, $2, $3) RETURNING *";
+    const { rows } = await pool.query(sentence, [nombre, cantidad_asientos, foto]);
 
     return {
       message: `Avion ${nombre} insertado con exito`,

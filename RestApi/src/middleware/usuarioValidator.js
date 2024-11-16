@@ -1,6 +1,7 @@
 import { body, check, validationResult } from "express-validator"
 import jwt from 'jsonwebtoken';
 
+
 export const userRules = () => [
   body("mail")
     .isEmail()

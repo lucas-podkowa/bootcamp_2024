@@ -1,5 +1,16 @@
 import request from "supertest";
 import app from "../app.js";
+import pool from './../config/db.js'
+
+//Comienza una transacción
+beforeEach(async () => {
+    await pool.query('BEGIN');
+});
+
+//Revertimos la transacción después de cada test
+afterEach(async () => {
+    await pool.query('ROLLBACK');
+});
 
 describe('User Login', () => {
 

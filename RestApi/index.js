@@ -1,5 +1,10 @@
 import app from './src/app.js'
+import { swaggerDOC } from './src/docs/swagger.js'
 
-app.listen(8080, (err) => {
-    console.log(`escuchando en http://localhost:8080`);
+const port = 8080;
+
+swaggerDOC(app, port);
+
+app.listen(port, (err) => {
+    console.log(`escuchando en http://localhost:${port}`);
 });
