@@ -17,6 +17,17 @@ export const getAll = async (req, res) => {
     }
 }
 
+export const get_avion_por_id = async (req, res) => {
+    const { id_avion } = req.params;
+    res.status(200).send(`id recibido valido: ${id_avion}`);
+    // try {
+    //   const avion = await model.getById(id);
+    //   res.status(200).json(avion);
+    // } catch (error) {
+    //   res.status(error.status || 500).json(error.message);
+    // }
+};
+
 export const create = async (req, res) => {
 
     const data = req.body;

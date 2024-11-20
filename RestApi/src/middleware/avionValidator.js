@@ -1,18 +1,24 @@
 import { body, check, validationResult } from "express-validator"
 
+export const reglas_para_validar_id = () => [
+    check('id_avion')
+        .isInt().withMessage('el id debe ser un numero entero')
+        .isLength({ max: 5 }).withMessage('no tan largo che')
+];
+
 
 
 export const rulesCreate = () => [
-body("nombre")
-    .notEmpty()
-    .withMessage("El nombre del avión es obligatorio")
-    .isLength({ max: 50 })
-    .withMessage("El nombre no puede exceder los 50 caracteres"),
-  body("cantidad_asientos")
-    .isInt({ min: 1 })
-    .withMessage(
-      "La cantidad de asientos debe ser un número entero mayor que 0"
-    )
+    body("nombre")
+        .notEmpty()
+        .withMessage("El nombre del avión es obligatorio")
+        .isLength({ max: 50 })
+        .withMessage("El nombre no puede exceder los 50 caracteres"),
+    body("cantidad_asientos")
+        .isInt({ min: 1 })
+        .withMessage(
+            "La cantidad de asientos debe ser un número entero mayor que 0"
+        )
 ];
 
 export const rulesUpdate = () => [
